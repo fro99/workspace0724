@@ -1,0 +1,110 @@
+-- 실습문제 --
+-- 도서관리 프로그램을 만들기 위한 테이블들 만들기 --
+-- 이때, 제약조건에 이름을 부여할 것
+-- 각 컬럼에 주석 달기
+
+-- 1. 출판사들에 대한 데이터를 담기 위한 출판사 테이블(TB_PUBLISHER)
+-- 컬럼 : PUB_NO (출판사 번호) - 기본키 (PUBLISHER_PK)
+--        PUB_NAME (출판사명) - NOT NULL (PUBLISHER_NN)
+--        PHONE (출판사 전화번호) - 제약조건 없음
+-- 샘플 3개 정도 생성
+CREATE TABLE TB_PUBLISHER(
+    BUB_NO NUMBER CONSTRAINT PUBLISHER_PK PRIMARY KEY,
+    PUB_NAME VARCHAR2(20) CONSTRAINT PUBLISHER_NN NOT NULL,
+    PHONE VARCHAR2(13)
+)
+
+INSERT INTO TB_PUBLISHER VALUES(01, '한빛출판사', '010-1111-1111');
+INSERT INTO TB_PUBLISHER VALUES(02, '달빛출판사', '010-2222-1111');
+INSERT INTO TB_PUBLISHER VALUES(03, '개구리출판사', '010-3333-1111');
+
+SELECT * FROM TB_PUBLISHER;
+
+ALTER TABLE TB_PUBLISHER RENAME COLUMN BUB_NO TO PUB_NO;
+
+
+-- 2. 도서들에 대한 데이터를 담기 위한 도서 테이블(TB_BOOK)
+-- 컬럼 : BK_NO (도서번호) - 기본키 (BOOK_PK)
+--        BK_TITLE (도서명) - NOT NULL (BOOK__NN_TITLE)
+--        BK_AUTHOR (저자명) - NOT NULL (BOOK__NN_AUTHOR)
+--        BK_PRICE (가격) - 제약조건 없음
+--        BK_PUB_NO (출판사 번호) - 외래키 (BOOK_FK), TB_PUBLISHER 테이블 참조
+--                                 이때 참조하고 있는 부모데이터 삭제 시 자식데이터도 삭제되도록 옵션 지정
+-- 샘플 5개 정도 생성
+
+CREATE TABLE TB_BOOK(
+    BK_NO NUMBER CONSTRAINT BOOK_PK PRIMARY KEY,
+    BK_TITLE VARCHAR2(20) CONSTRAINT BOOK_NN_TITLE NOT NULL,
+    BK_AUTHOR VARCHAR2(20) CONSTRAINT BOOK_NN_AUTHOR NOT NULL,
+    BK_PRICE NUMBER,
+    BK_PUB_NO NUMBER, 
+    CONSTRAINT BOOK_FK FOREIGN KEY(BK_PUB_NO) REFERENCES TB_PUBLISHER(PUB_NO) ON DELETE CASCADE
+);
+
+INSERT INTO TB_BOOK (BK_NO, BK_TITLE, BK_AUTHOR, BK_PRICE, BK_PUB_NO)
+VALUES (1, 'SQL개념', '김철수', 25000, 01);
+
+INSERT INTO TB_BOOK (BK_NO, BK_TITLE, BK_AUTHOR, BK_PRICE, BK_PUB_NO)
+VALUES (2, '운영체제 이해', '이영희', 28000, 02);
+
+INSERT INTO TB_BOOK (BK_NO, BK_TITLE, BK_AUTHOR, BK_PRICE, BK_PUB_NO)
+VALUES (3, '자바', '박지민', 32000, 01);
+
+INSERT INTO TB_BOOK (BK_NO, BK_TITLE, BK_AUTHOR, BK_PRICE, BK_PUB_NO)
+VALUES (4, '네트워크 기초', '최은정', 22000, 03);
+
+INSERT INTO TB_BOOK (BK_NO, BK_TITLE, BK_AUTHOR, BK_PRICE, BK_PUB_NO)
+VALUES (5, '정보보안 이론', '정우성', 30000, 03);
+
+SELECT * FROM TB_BOOK;
+
+
+-- 3. 회원에 대한 데이터를 담기 위한 회원 테이블(TB_MEMBER)
+-- 컬럼 : MEMBER_NO (회원번호) - 기본키 (MEMBER_PK)
+--        MEMBER_ID (아이디) - 중복금지 (MEMBER_UQ_ID)
+--        MEMBER_PWD (비밀번호) - NOT NULL (MEMBER_NN_PWD)
+--        MEMBER_NAME (회원명) - NOT NULL (MEMBER_NN_NAME)
+--        GENDER (성별) - M 또는 F로 제한 (MEMBER_CK_GEN)
+--        ADDRESS (주소) - 제약조건 없음
+--        PHONE (연락처) - 제약조건 없음
+--        STATUS (탈퇴여부) - 기본값 N, N 또는 Y만 허용 (MEMBER_CK_STA)
+--        ENROLL_DATE (가입일) - 기본값 SYSDATE, NOT NULL (MEMBER_NN_EN)
+-- 샘플 5개 정도 생성
+
+CREATE TABLE TB_MEMBER(
+   MEMBER_NO NUMBER CONSTRAINT MEMBER_PK PRIMARY KEY,
+   MEMBER_ID VARCHAR2(20) CONSTRAINT MEMBER_UQ_ID UNIQUE,
+   MEMBER_PWD VARCHAR2(20) CONSTRAINT MEMBER_NN_PWD NOT NULL,
+   MEMBER_NAME VARCHAR2(20) CONSTRAINT MEMBER_NN_NAME NOT NULL,
+   GENDER CHAR(1) CONSTRAINT MEMBER_CK_GEN CHECK (GENDER IN ('M', 'F')),
+   ADDRESS VARCHAR2(20),
+   PHONE VARCHAR2(13),
+   STATUS CHAR(1) CONSTRAINT MEMBER_CK_STA CHECK (STATUS IN ('N', 'Y')),
+    ENROLL_DATE DATE DEFAULT SYSDATE CONSTRAINT MEMBER_NN_EN NOT NULL
+);
+
+INSERT INTO TB_MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS)
+VALUES (1, 'user01', 'pwd1234', '홍길동', 'M', '서울시 강남구', '010-1111-1111', 'N');
+
+INSERT INTO TB_MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS)
+VALUES (2, 'jane99', 'qwerty12', '김영희', 'F', '부산시 해운대구', '010-2222-3333', 'Y');
+
+INSERT INTO TB_MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS)
+VALUES (3, 'hello123', 'abc12345', '이철수', 'M', '대전시 유성구', '010-3333-4444', 'N');
+
+INSERT INTO TB_MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS)
+VALUES (4, 'sunnygirl', 'sun7890', '최은정', 'F', '인천시 미추홀구', '010-4444-5555', 'Y');
+
+INSERT INTO TB_MEMBER (MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, GENDER, ADDRESS, PHONE, STATUS)
+VALUES (5, 'admin', 'adminpw1', '관리자', 'M', '서울시 종로구', '010-5555-6666', 'N');
+
+
+-- 4. 어떤 회원이 어떤 도서를 대여했는지에 대한 대여목록 테이블(TB_RENT)
+-- 컬럼 : RENT_NO (대여번호) - 기본키 (RENT_PK)
+--        RENT_MEM_NO (대여회원번호) - 외래키 (RENT_FK_MEM), TB_MEMBER 참조
+--                                     부모 데이터 삭제 시 자식데이터 값이 NULL이 되도록 지정
+--        RENT_BOOK_NO (대여도서번호) - 외래키 (RENT_FK_BOOK), TB_BOOK 참조
+--                                      부모 데이터 삭제 시 자식데이터 값이 NULL이 되도록 지정
+--        RENT_DATE (대여일) - 기본값 SYSDATE
+
+-- 샘플 3개 정도 생성
