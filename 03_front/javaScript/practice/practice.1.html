@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid black;
+            background: black;
+            width: 100px;
+            height: 100px;
+        }
+
+        #area2{
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <h3>문제1. 색상 선택후 변경 버튼을 클릭하면 생상이 변경되도록 만들어라</h3>
+    
+    <div id="color-box"></div>
+    <input type="color">
+    <button onclick="changeColor()">변경</button>
+    <script>
+        function changeColor(){
+            const colorBox = document.getElementById('color-box');
+            const inputColor = document.querySelector('input[type=color]');
+            colorBox.style.background = inputColor.value;
+        }
+    </script>
+
+    <br><br>
+
+    <h3>문제2. 버튼에 따라 크기조절이 가능하게 만들어 보세요.</h3>
+
+    <div id="size-box"></div>
+    <input type="button" value="50x50" onclick="changeSize(50,50);">
+    <input type="button" value="100x100" onclick="changeSize(100,100);">
+    <input type="button" value="200x200" onclick="changeSize(200,200);">
+    <script>
+        function changeSize(width, height){
+            const sizeBox = document.querySelector('#size-box');
+            sizeBox.style.width = width + "px";
+            sizeBox.style.height = height + "px";
+
+        }
+    </script>
+
+
+
+</body>
+</html>
