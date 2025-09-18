@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            gap: 10px;
+            align-items: center; 
+            flex-wrap: wrap;
+            min-height: 120px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Practice 1</h3>
+    <fieldset>
+        <legend>취미</legend>
+        <label><input type="checkbox" id="selectAll">전체선택</label>
+        <div id="items">
+            <label><input type="checkbox" class="item">종합</label>
+            <label><input type="checkbox" class="item">소셜</label>
+            <label><input type="checkbox" class="item">시/에세이</label>
+            <label><input type="checkbox" class="item">경제/경영</label>
+            <label><input type="checkbox" class="item">자기개발</label>
+            <label><input type="checkbox" class="item">아동</label> <br>
+            <label><input type="checkbox" class="item">여행</label>
+            <label><input type="checkbox" class="item">과학</label>
+            <label><input type="checkbox" class="item">역사/문화</label>
+            <label><input type="checkbox" class="item">외국어</label>
+            <label><input type="checkbox" class="item">컴퓨터</label>
+            <label><input type="checkbox" class="item">만화</label>
+        </div>
+    </fieldset>
+    
+    <br>
+
+    <button onclick="hbList()">카테고리 선택</button>
+    <div id="area1" class="area"></div>
+    <script>
+        const selectAll = document.getElementById("selectAll");
+        const items = document.getElementById("items");
+
+        selectAll.addEventListener("change", function(){
+            items.forEach(item => item.checked = selectAll.checked);   
+        })
+
+
+    </script>
+</body>
+</html>
