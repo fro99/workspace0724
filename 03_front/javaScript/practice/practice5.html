@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice4</title>
+  <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice4</title>
+  <style>
+    body { margin: 20px; }
+    fieldset { width: 400px; padding: 10px; }
+    input, select, textarea { 
+    margin: 5px 0; 
+    padding: 5px; 
+    }
+    button {
+     margin-top: 10px; 
+     padding: 5px 10px; 
+     cursor: pointer; }
+    #result { 
+    border: 1px solid #aaa; 
+    margin-top: 15px; padding: 
+    10px; width: 400px; min-height: 
+    80px; background: #f9f9f9; }
+  </style>
+</head>
+<body>
+  <h2>Practice4</h2>
+  <fieldset>
+    <legend>구매 정보</legend>
+    <form id="buyForm">
+      구매자: <input type="text" id="buyer" placeholder="구매자의 이름을 입력하세요"><br>
+      상품명: <input type="text" id="product" placeholder="구매할 상품명을 입력하세요"><br>
+      가격: <input type="text" id="price" placeholder="구매할 가격을 입력하세요"><br>
+      구매 수량: 
+      <select id="quantity">
+        <!-- JS로 옵션 생성 -->
+      </select><br>
+      납품 등급: 
+      <select id="grade">
+        <!-- JS로 옵션 생성 -->
+      </select><br>
+      기타 사항:<br>
+      <textarea id="memo" rows="4" cols="40"></textarea>
+    </form>
+  </fieldset>
+  <br>
+  <button onclick="printInfo()">입력 값 출력하기</button>
+  <br><br>
+  <div id="result" style="border:1px solid black; width:400px; min-height:100px; padding:10px;"></div>
+
+  <script>
+    // 수량 옵션 (10~100, 10씩 증가)
+    const qtySelect = document.getElementById("quantity");
+    for (let i = 10; i <= 100; i += 10) {
+      const option = document.createElement("option");
+      option.value = i;
+      option.text = i + "개";
+      qtySelect.appendChild(option);
+    }
+
+    // 납품 등급 옵션 (1~9, 2씩 증가)
+    const gradeSelect = document.getElementById("grade");
+    for (let i = 1; i <= 9; i += 2) {
+      const option = document.createElement("option");
+      option.value = i;
+      option.text = i + "등급";
+      gradeSelect.appendChild(option);
+    }
+
+    // 버튼 눌렀을 때 값 출력
+    function printInfo() {
+      const buyer = document.getElementById("buyer").value;
+      const product = document.getElementById("product").value;
+      const price = document.getElementById("price").value;
+      const quantity = document.getElementById("quantity").value;
+      const grade = document.getElementById("grade").value;
+      const memo = document.getElementById("memo").value;
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = 
+      `
+        구매자: ${buyer}<br>
+        상품명: ${product}<br>
+        가격: ${price}원<br>
+        구매 수량: ${quantity}개<br>
+        납품 등급: ${grade}등급<br>
+        기타 사항: ${memo}
+      `;
+    }
+  </script>
+</body>
+</html>

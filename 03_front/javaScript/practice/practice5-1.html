@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="but-info-form">
+        <fieldset>
+            <legend>구매 정보</legend>
+                <ul>
+                    <li>
+                        구매자 : 
+                        <input type="text" placeholder="구매자의 이름을 입력하세요.">
+                    </li>
+                    <li>
+                        상품명 : 
+                        <input type="text" placeholder="구매 상품명을 입력하세요.">
+                    </li>
+                    <li>
+                        가격 : 
+                        <input type="number" placeholder="구매 가격을 입력하세요.">
+                    </li>
+                    <li>
+                        구매수량 : 
+                        <input type="number" placeholder="최소 10" min="10" max="100" step="10">
+                    </li>
+                    <li>
+                        납품등급 : 
+                        <input type="range" value="1" min="1" max="0" step="2">
+                    </li>
+                    <li>
+                        기타사항 : 
+                        <textarea></textarea>
+                    </li>
+                </ul>
+        </fieldset>
+    </form>
+
+    <br>
+
+    <button onclick="printResult()">입력값 출력하기</button>
+    
+    <br><br>
+
+    <div id="result-view"></div>
+    <script>
+        /*
+            Element.chldren : 특정요소 내부에 있는 자식요소(element)목록을 배열로 반환함
+            Element.childNodes : 특정요소 내부에 있는 모든 자식노드(태그, 텍스트, 주석, 공백, 줄바꿈 ...)를 배열로 반환
+        */
+        function printResult(){
+            const resultView = document.querySelector('#result-view');
+            const buyinfoliArr = document.querySelector('#but-info-form');
+            console.log(buyinfoliArr);
+        for(let i=0; i<buyinfoliArr.length; i++){
+            console.log(buyinfoliArr[i].children.);
+            console.log(buyinfoliArr[i].children[0].value);
+        }            
+        }
+    </script>
+
+</body>
+</html>

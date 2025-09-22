@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select, button{
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Practice3</h1>
+    <div class="container">
+        <input type="number" id="num1">
+        <select id="calcul-type">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" id="num2">
+        <button>=</button>
+        <input type="text" readonly>
+    </div>
+
+    <script>
+        function calculator(){
+            const numberBox1 = document.getElementById("num1").value;
+            const numberBox2 = document.getElementById("num2").value;
+
+            const typeValue = decodeURI.getElementById('calcul-type').value;
+
+          
+
+        }
+    </script>
+</body>
+</html>

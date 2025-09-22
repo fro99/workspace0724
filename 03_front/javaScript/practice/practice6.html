@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice5</title>
+</head>
+<body>
+  <h2>Practice5</h2>
+  <fieldset>
+    <legend>검색할 항목을 선택하세요.</legend>
+    <label><input type="radio" name="searchType" value="title"> 제목</label>
+    <label><input type="radio" name="searchType" value="date"> 날짜</label>
+    <label><input type="radio" name="searchType" value="writer"> 작성자</label>
+  </fieldset>
+  <br>
+  <div id="searchArea" style="border:1px solid gray; padding:10px; width:400px;"></div>
+
+  <script>
+    const radios = document.getElementsByName("searchType");
+    const searchArea = document.getElementById("searchArea");
+
+    // 라디오 버튼 선택 시 실행
+    radios.forEach(radio => {
+      radio.addEventListener("change", function() {
+        let html = "";
+
+        if (this.value === "title") {
+          html = `
+            검색할 제목을 입력하세요: 
+            <input type="text" placeholder="제목 입력">
+            <button>검색</button>
+          `;
+        } else if (this.value === "date") {
+          html = `
+            검색할 날짜를 선택하세요: 
+            <input type="date"> ~ <input type="date">
+            <button>검색</button>
+          `;
+        } else if (this.value === "writer") {
+          html = `
+            검색할 작성자 아이디를 입력하세요: 
+            <input type="text" placeholder="작성자 ID">
+            <button>검색</button>
+          `;
+        }
+
+        searchArea.innerHTML = html;
+      });
+    });
+  </script>
+</body>
+</html>
