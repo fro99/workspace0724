@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Noto Sans KR", sans-serif;
+    background: linear-gradient(135deg, #9681EB, #6527BE);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* 헤더 */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #9681EB, #6527BE);
+    color: white;
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+header h5 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+header #balance {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3fa332;
+}
+
+/* 입력 영역 */
+.summary-input {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-text-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.summary-text-input input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border 0.3s ease;
+}
+
+.summary-text-input input:focus {
+    border-color: #6527BE;
+}
+
+.summary-input-button {
+    display: flex;
+    gap: 10px;   
+    margin-bottom: 15px;
+    justify-content: center; 
+}
+
+#income-input,
+#expense-input {
+    flex: none;            
+    min-width: 100px;      
+    padding: 10px 20px;    
+    font-size: 14px;       
+    font-weight: 600;
+    border-radius: 25px;   
+    transition: transform 0.2s, background 0.2s;
+}
+
+/* 수입 버튼 */
+#income-input {
+    background: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+#income-input:hover,
+#income-input.active {
+    background: #4CAF50;
+    color: white;
+}
+
+/* 지출 버튼 */
+#expense-input {
+    background: white;
+    color: #d44d4d;
+    border: 2px solid #d44d4d;
+}
+#expense-input:hover,
+#expense-input.active {
+    background: #d44d4d;
+    color: white;
+}
+
+
+#add-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #9681EB, #6527BE);
+    color: white;
+    transition: transform 0.2s;
+}
+
+#add-btn:hover {
+    background: #6527BE;
+}
+
+/* 필터 버튼 */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-buttons button {
+    padding: 8px 18px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.filter-buttons button:hover,
+.filter-buttons button.active {
+    background: #6527BE;
+    color: white;
+    border-color: #6527BE;
+}
+
+/* 요약 영역 */
+.summary-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.summary-footer p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+#total-income {
+    color: #4CAF50;
+    font-weight: 700;
+}
+
+#total-expense {
+    color: #e46464;
+    font-weight: 700;
+}
+
+#summary-balance {
+    color: #4CAF50;
+    font-weight: 700;
+}
+
+/* 내역 리스트 */
+#transaction-list {
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#transaction-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+#transaction-list li:hover {
+    background: #fafafa;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.transaction-amount.income {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.transaction-amount.expense {
+    color: #e46464;
+    font-weight: 600;
+}
+
+.delete-btn {
+    background: #e46464;
+    color: white;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #d44d4d;
+}

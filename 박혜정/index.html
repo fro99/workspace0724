@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 외부라이브러리 -->
+    <!-- google web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내부import -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 영역 -->
+        <header>
+            <h1>가계부</h1>
+            <h5>현재 잔액</h5>
+            <span id="balance">0원</span>
+        </header>
+
+        <!-- 입력 영역 -->
+        <div class="summary-input">
+            <div class="summary-text-input">
+                <input type="text" id="desc-input" placeholder="내용을 입력하세요 (예: 점심값, 월급)">
+                <input type="text" id="amount-input" placeholder="금액을 입력하세요">
+            </div>
+            <div class="summary-input-button">
+                <button id="income-input">수입</button>
+                <button id="expense-input">지출</button>
+            </div>
+            <button id="add-btn">추가하기</button>
+        </div>
+
+        <!-- 필터 버튼 -->
+        <div class="filter-buttons">
+            <button data-filter="all" class="active">전체</button>
+            <button data-filter="income">수입</button>
+            <button data-filter="expense">지출</button>
+        </div>
+
+        <!-- 요약 영역 -->
+        <div class="summary-footer">
+            <div>
+                <p>총 수입</p>
+                <span id="total-income">0원</span>
+            </div>
+            <div>
+                <p>총 지출</p>
+                <span id="total-expense">0원</span>
+            </div>
+            <div>
+                <p>잔액</p>
+                <span id="summary-balance">0원</span>
+            </div>
+        </div>
+
+        <!-- 내역 리스트 -->
+        <ul id="transaction-list"></ul>
+  </div>
+    
+    <script src="./javascript.js"></script>
+</body>
+</html>
